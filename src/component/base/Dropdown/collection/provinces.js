@@ -1,0 +1,15 @@
+export const PROVINCES = [
+  { key: 'AB', value: 'AB', text: 'Alberta' },
+  { key: 'BC', value: 'BC', text: 'British Columbia' },
+  { key: 'MB', value: 'MB', text: 'Manitoba' },
+  { key: 'NB', value: 'NB', text: 'New Brunswick' },
+  { key: 'NL', value: 'NL', text: 'Newfoundland' },
+  { key: 'NS', value: 'NS', text: 'Nova Scotia' },
+  { key: 'NT', value: 'NT', text: 'Northwest Territories' },
+  { key: 'NU', value: 'NU', text: 'Nunavut' },
+  { key: 'ON', value: 'ON', text: 'Ontario' },
+  { key: 'PE', value: 'PE', text: 'Prince Edward Island' },
+  { key: 'QC', value: 'QC', text: 'Quebec' },
+  { key: 'SK', value: 'SK', text: 'Saskatchewan' },
+  { key: 'YT', value: 'YT', text: 'Yukon' },
+];

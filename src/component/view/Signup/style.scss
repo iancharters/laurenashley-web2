@@ -1,0 +1,25 @@
+// .inner {
+//   height: 100%;
+// }
+//
+// .outter {
+//   width: 50%;
+//   margin: 0 auto;
+// }
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+}

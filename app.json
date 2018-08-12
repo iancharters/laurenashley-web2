@@ -1,0 +1,6 @@
+{
+  "name": "psm-web",
+  "description": "ULTIMATE PSM WEB",
+  "repository": "https://github.com/iancharters/psm-web",
+  "image": "heroku/nodejs"
+}
