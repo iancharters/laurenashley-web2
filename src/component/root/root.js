@@ -18,6 +18,7 @@ import NotFound from 'component/view/NotFound';
 import Signup from 'component/view/Signup';
 import Alert from 'react-s-alert';
 import UserHome from 'component/view/UserHome';
+import Client from 'component/view/Client';
 import Clients from 'component/view/Clients';
 import Events from 'component/view/Events';
 import Settings from 'component/view/Settings';
@@ -75,6 +76,13 @@ class Root extends Component {
               exact
               path='/settings'
               component={Settings}
+              {...authProps}
+            />
+
+            <MatchAuthenticated
+              exact
+              path='/client/:id'
+              component={Client}
               {...authProps}
             />
 
