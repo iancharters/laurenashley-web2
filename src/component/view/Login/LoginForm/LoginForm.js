@@ -42,7 +42,7 @@ const LoginForm = ({handleSubmit, submitting}) => {
             <Segment stacked>
               <Field
                 name='email'
-                placeholder='Username'
+                placeholder='Email'
                 component={LabelInputField}
                 fluid
                 icon='lock'

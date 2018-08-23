@@ -13,6 +13,15 @@ export const GET_CLIENT = gql`
   }
 `;
 
+export const CREATE_CLIENT = gql`
+  mutation createClient($id: ID!, $firstName: String, $lastName: String, $email: String, $phoneNumber: String) {
+    createClient(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber) {
+      id
+      clientID
+    }
+  }
+`;
+
 export const UPDATE_CLIENT = gql`
   mutation updateClient($id: ID!, $firstName: String, $lastName: String, $email: String, $phoneNumber: String) {
     updateClient(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber) {

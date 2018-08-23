@@ -7,6 +7,7 @@ import {Dropdown as SUIDropdown} from 'semantic-ui-react';
 // Import collections ==========================================================
 import {PROVINCES} from './collection/provinces';
 import {COUNTRIES} from './collection/countries';
+import {GENDERS} from './collection/genders';
 
 // Import styles ===============================================================
 import {LABEL} from './style.scss';
@@ -24,6 +25,12 @@ const Dropdown = ({collection, options, label, ...props}) => {
 
     case 'countries': {
       c = COUNTRIES;
+      collection = true;
+      break;
+    }
+
+    case 'genders': {
+      c = GENDERS;
       collection = true;
       break;
     }

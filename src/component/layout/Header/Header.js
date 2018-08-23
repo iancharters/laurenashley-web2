@@ -52,7 +52,7 @@ const Header = ({currentUser, logout}) => {
           style={{marginRight: '0', marginLeft: '0'}}
         >
           <Menu.Menu position='right'>
-            <Menu.Item>Welcome, {currentUser.username}.</Menu.Item>
+            <Menu.Item>Welcome, {currentUser.first_name}.</Menu.Item>
             <Menu.Item onClick={logout}>Logout</Menu.Item>
           </Menu.Menu>
         </div>
@@ -63,7 +63,8 @@ const Header = ({currentUser, logout}) => {
 
 Header.defaultProps = {
   currentUser: {
-    username: '',
+    first_name: '',
+    last_name: '',
   },
 };
 
