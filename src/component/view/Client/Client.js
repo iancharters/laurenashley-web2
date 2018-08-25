@@ -10,7 +10,7 @@ import CreateClient from 'component/partial/Client/CreateClient';
 import UpdateClient from 'component/partial/Client/UpdateClient';
 
 // Import query ================================================================
-import {GET_CLIENT} from 'gql/query/client.gql';
+import {GET_USER} from 'gql/query/user.gql';
 
 class Client extends React.Component {
   render() {
@@ -21,14 +21,14 @@ class Client extends React.Component {
           Client Information
         </Header>
         {id == 'new' ? <CreateClient /> : (
-          <Query query={GET_CLIENT} variables={{id}}>
+          <Query query={GET_USER} variables={{id}}>
             {({loading, error, data, client}) => {
               if (loading) return <Loading loading={loading} />;
               if (error) return <p>Error : {error}(</p>;
 
               return (
                 <div>
-                  <UpdateClient client={data.client} />
+                  <UpdateClient user={data.user} />
                 </div>
               );
             }}

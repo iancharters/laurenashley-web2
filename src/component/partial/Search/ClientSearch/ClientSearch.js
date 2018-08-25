@@ -11,7 +11,7 @@ import { InstantSearch } from 'react-instantsearch/dom';
 import {
   ALGOLIA_APP_ID,
   ALGOLIA_SEARCH_KEY,
-  CLIENT_INDEX,
+  USER_INDEX,
 } from 'config/algolia.config';
 
 const SiteSearch = () => (
@@ -19,7 +19,7 @@ const SiteSearch = () => (
     <InstantSearch
       appId={ALGOLIA_APP_ID}
       apiKey={ALGOLIA_SEARCH_KEY}
-      indexName={CLIENT_INDEX}
+      indexName={USER_INDEX}
     >
       <SearchBox /> <br />
       <Table celled>

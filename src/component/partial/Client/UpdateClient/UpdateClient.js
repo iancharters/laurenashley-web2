@@ -8,142 +8,153 @@ import Input from 'component/base/Input';
 import Button from 'component/base/Button';
 import Dropdown from 'component/base/Dropdown';
 import Checkbox from 'component/base/Checkbox';
-import TextArea from 'component/base/TextArea';
 import FormikFieldInput from 'component/base/FormikFieldInput';
 import {Mutation} from 'react-apollo';
 import Alert from 'react-s-alert';
-import ConfirmDelete from 'component/partial/ConfirmDelete';
 
 // Import query ================================================================
-import {UPDATE_CLIENT, DELETE_CLIENT} from 'gql/query/client.gql';
+import {UPDATE_USER, GET_USER} from 'gql/query/user.gql';
 
-// Import schema ===============================================================
 import {schema} from './schema';
+import {phone} from 'selector/phone';
 
-class UpdateClient extends React.Component {
-  constructor(props) {
-    super(props);
+const UpdateUser = ({user}) => {
+  return (
+    <Mutation
+      mutation={UPDATE_USER}
+      update={(cache, {data: {updateUser}}) => {
+        // Read the data from our cache for this query.
+        const data = cache.readQuery({
+          query: GET_USER,
+          variables: {id: user.id},
+        });
 
-    this.state = {
-      submit: false,
-    };
-  }
+        // Update data
+        data.user = updateUser
 
-  render() {
-    const client = this.props.client;
-    return (
-      <Mutation mutation={UPDATE_CLIENT}>
-        {(updateClient) => (
-          <Formik
-            initialValues={{
-              id: client.id,
-              clientID: client.clientID,
-              firstName: client.firstName,
-              lastName: client.lastName,
-              email: client.email,
-              phoneNumber: client.phoneNumber,
-            }}
-            validationSchema={schema}
-            onSubmit={(values, {setSubmitting}) => {
-              if (this.state.submit) {
-                updateClient({
-                  variables: {
-                    id: client.id,
-                    firstName: values.firstName,
-                    lastName: values.lastName,
-                    email: values.email,
-                    phoneNumber: values.phoneNumber,
-                  },
-                })
-                  .then((resp) => {
-                    Alert.success('Success');
-                  })
-                  .catch((error) => {
-                    Alert.error('Error');
-                  });
-              }
+        // Write our data back to the cache.
+        cache.writeQuery({query: GET_USER, data});
+      }}
+    >
+      {(updateUser) => (
+        <Formik
+          initialValues={{
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            gender: user.gender,
+            isStaff: user.isStaff,
+            isSuperuser: user.isSuperuser,
+          }}
+          validationSchema={schema}
+          onSubmit={(values, {setSubmitting}) => {
+            updateUser({
+              variables: {
+                id: user.id,
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.email,
+                phoneNumber: phone(values.phoneNumber),
+                gender: values.gender,
+                isStaff: values.isStaff,
+                isSuperuser: values.isSuperuser,
+              },
+            })
+              .then((resp) => {
+                Alert.success('Success');
+              })
+              .catch((error) => {
+                Alert.error('Error');
+              });
 
-              setSubmitting(false);
-              this.setState({submit: false});
-            }}
-            render={({values, handleSubmit, isSubmitting, errors}) => {
-              return (
-                <Form size='large' onSubmit={handleSubmit}>
-                  <Form.Group widths='equal'>
-                    <Form.Field>
-                      <FormikFieldInput
-                        name='firstName'
-                        component={Input}
-                        label='First Name'
-                      />
-                    </Form.Field>
-                    <Form.Field>
-                      <FormikFieldInput
-                        name='lastName'
-                        component={Input}
-                        label='Last Name'
-                      />
-                    </Form.Field>
-                  </Form.Group>
-                  <Form.Group widths='equal'>
-                    <Form.Field>
-                      <FormikFieldInput
-                        name='email'
-                        component={Input}
-                        label='Email'
-                      />
-                    </Form.Field>
-                    <Form.Field>
-                      <FormikFieldInput
-                        name='phoneNumber'
-                        component={Input}
-                        label='Phone Number'
-                      />
-                    </Form.Field>
-                  </Form.Group>
-                  <Button
-                    disabled={isSubmitting}
-                    onClick={() => {
-                      this.setState({submit: true})
-                       if(Object.keys(errors).length > 0) {
-                         Alert.warning("Errors present in form.")
-                       }
-                    }}
-                    color='green'
-                  >
-                    Submit
-                  </Button>
-                  <Mutation mutation={DELETE_CLIENT}>
-                    {(deleteClient) => (
-                      <ConfirmDelete
-                        redirectTo='/clients'
-                        performAction={() => {
-                          return deleteClient({
-                            variables: {
-                              id: client.id,
-                            },
-                          });
-                        }}
-                      >
-                        Delete Customer
-                      </ConfirmDelete>
-                    )}
-                  </Mutation>
-                  <Button
-                    onClick={() => console.log("Password Reset")}
-                  >
-                    Password Reset
-                  </Button>
-                </Form>
-              );
-            }}
-          />
-        )}
-      </Mutation>
-    );
-  }
-}
+            setSubmitting(false);
+          }}
+          render={({values, handleSubmit, isSubmitting, setFieldValue}) => {
+            return (
+              <Form size='large' onSubmit={handleSubmit}>
+                <Form.Group widths='equal'>
+                  <Form.Field>
+                    <FormikFieldInput
+                      name='firstName'
+                      component={Input}
+                      label='First Name'
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <FormikFieldInput
+                      name='lastName'
+                      component={Input}
+                      label='Last Name'
+                    />
+                  </Form.Field>
+                </Form.Group>
+                <Form.Group widths='equal'>
+                  <Form.Field>
+                    <FormikFieldInput
+                      name='email'
+                      component={Input}
+                      label='Email'
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <FormikFieldInput
+                      name='phoneNumber'
+                      component={Input}
+                      label='Phone Number'
+                    />
+                  </Form.Field>
+                </Form.Group>
+                <Form.Group widths='equal'>
+                  <Form.Field>
+                    <FormikFieldInput
+                      name='gender'
+                      component={Dropdown}
+                      collection='genders'
+                      label='Gender'
+                      onChange={(e, {value}) =>
+                        setFieldValue('gender', value)
+                      }
+                      value={values.gender}
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <FormikFieldInput
+                      name='isSuperuser'
+                      component={Checkbox}
+                      label='Superuser?'
+                      checked={values.isSuperuser}
+                      onChange={(event, data) => {
+                        setFieldValue('isSuperuser', !values.isSuperuser);
+                      }}
+                      toggle
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <FormikFieldInput
+                      name='isStaff'
+                      component={Checkbox}
+                      label='Staff?'
+                      checked={values.isStaff}
+                      onChange={(event, data) => {
+                        setFieldValue('isStaff', !values.isStaff);
+                      }}
+                      toggle
+                    />
+                  </Form.Field>
+                </Form.Group>
+                <Button disabled={isSubmitting} color='green'>
+                  Submit
+                </Button>
+              </Form>
+            );
+          }}
+        />
+      )}
+    </Mutation>
+  );
+};
 
-UpdateClient.displayName = 'Partial/UpdateClient';
+UpdateUser.displayName = 'Partial/UpdateUser';
 
-export default UpdateClient;
+export default UpdateUser;

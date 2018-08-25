@@ -15,11 +15,9 @@ import Alert from 'react-s-alert';
 // Import query ================================================================
 import {CREATE_USER} from 'gql/query/user.gql';
 
-// Import schema ===============================================================
 import {schema} from './schema';
-
-// Import utils ================================================================
 import {createPassword} from 'utils/user';
+import {phone} from 'selector/phone';
 
 const CreateClient = () => (
   <Mutation mutation={CREATE_USER}>
@@ -42,7 +40,7 @@ const CreateClient = () => (
               firstName: values.firstName,
               lastName: values.lastName,
               email: values.email,
-              phoneNumber: values.phoneNumber,
+              phoneNumber: phone(values.phoneNumber),
               gender: values.gender,
               password: createPassword(),
               isStaff: values.isStaff,
