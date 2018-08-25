@@ -14,7 +14,10 @@ import {
   USER_INDEX,
 } from 'config/algolia.config';
 
-const SiteSearch = () => (
+const SiteSearch = () => {
+  console.log(ALGOLIA_APP_ID)
+  console.log(ALGOLIA_SEARCH_KEY)
+  return(
   <div className="container">
     <InstantSearch
       appId={ALGOLIA_APP_ID}
@@ -38,7 +41,7 @@ const SiteSearch = () => (
     </InstantSearch>
   </div>
 );
-
+}
 SiteSearch.displayName = 'Partial/Search/SiteSearch';
 
 export default SiteSearch;
