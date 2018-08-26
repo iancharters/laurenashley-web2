@@ -23,6 +23,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __CONFIG_API_URL__: JSON.stringify(process.env.API_URL),
+        'process.env.ALGOLIA_APP_ID': JSON.stringify(process.env.ALGOLIA_APP_ID),
+        'process.env.ALGOLIA_SEARCH_KEY': JSON.stringify(process.env.ALGOLIA_SEARCH_KEY),
     }),
     new CaseSensitivePlugin(),
     new HtmlWebpackPlugin({

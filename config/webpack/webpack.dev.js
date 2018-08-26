@@ -18,11 +18,7 @@ module.exports = merge(common, {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development'),
-        ALGOLIA_APP_ID: JSON.stringify(process.env.DEV_ALGOLIA_APP_ID),
-        ALGOLIA_SEARCH_KEY: JSON.stringify(process.env.DEV_ALGOLIA_SEARCH_KEY),
-      },
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
 });
