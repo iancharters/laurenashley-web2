@@ -59,6 +59,7 @@
     "rimraf": "^2.6.2",
     "semantic-ui-calendar-react": "^0.8.0",
     "semantic-ui-react": "^0.77.2",
+    "sparkpost": "^2.1.2",
     "value-loader": "^0.1.4",
     "yup": "^0.25.1"
   },

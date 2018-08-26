@@ -15,7 +15,7 @@ import {GET_USER} from 'gql/query/user.gql';
 class Client extends React.Component {
   render() {
     const {id} = this.props.match.params;
-    console.log(process.env)
+    
     return (
       <Container>
         <Header as='h1' dividing>
