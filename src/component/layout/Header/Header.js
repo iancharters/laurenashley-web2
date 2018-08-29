@@ -9,7 +9,7 @@ import {logout} from 'action/session';
 import style from './style.scss';
 
 // Import images ===============================================================
-import PALogo from 'asset/image/PALogo.png';
+import Logo from 'asset/image/LALogo.png';
 
 // Import components ===========================================================
 import {Container, Grid, Image, Menu} from 'semantic-ui-react';
@@ -31,7 +31,7 @@ const Header = ({currentUser, logout}) => {
     >
       <Container>
         <Menu.Item style={{padding: '10 0 10 0'}} fitted header>
-          <Image src={PALogo} />
+          <Image src={Logo} />
         </Menu.Item>
         <div className={CONTAINER}>
           <Menu.Item>
