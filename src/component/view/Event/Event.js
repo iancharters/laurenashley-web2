@@ -10,7 +10,7 @@ import EventCreate from 'component/partial/Event/EventCreate';
 import EventUpdate from 'component/partial/Event/EventUpdate';
 
 // Import query ================================================================
-import {GET_EVENT} from 'gql/query/user.gql';
+import {GET_EVENT} from 'gql/query/event.gql';
 
 class Event extends React.Component {
   render() {
@@ -29,7 +29,7 @@ class Event extends React.Component {
 
               return (
                 <div>
-                  <EventUpdate user={data.event} />
+                  <EventUpdate event={data.event} />
                 </div>
               );
             }}
