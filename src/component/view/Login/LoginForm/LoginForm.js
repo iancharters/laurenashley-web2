@@ -24,7 +24,7 @@ import style from '../style.scss';
 import {C2, C5} from 'config/colors.config';
 
 // Import images ===============================================================
-import PALogo from 'asset/image/PALogo.png';
+import LALogo from 'asset/image/LALogo.png';
 
 const LoginForm = ({handleSubmit, submitting}) => {
   const submit = (data, dispatch) => dispatch(login(data));
@@ -33,7 +33,7 @@ const LoginForm = ({handleSubmit, submitting}) => {
     <Grid textAlign='center' style={{height: '100%'}} verticalAlign='middle'>
       <Grid.Row>
         <Grid.Column style={{maxWidth: 450}}>
-          <Image src={PALogo} style={{display: 'block', margin: '0 auto'}} />
+          <Image src={LALogo} style={{display: 'block', margin: '0 auto'}} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

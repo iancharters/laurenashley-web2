@@ -9,7 +9,7 @@ import {HttpLink} from 'apollo-link-http';
 import {ApolloProvider} from 'react-apollo';
 import {ApolloLink} from 'apollo-link';
 import {withClientState} from 'apollo-link-state';
-import gql from 'graphql-tag';
+// import gql from 'graphql-tag';
 
 // Import store ================================================================
 import store from 'store';
@@ -19,28 +19,32 @@ import Root from 'component/root';
 
 // Import config ===============================================================
 import {GQL} from 'config/url.config';
-// import {resolvers} from 'gql/resolvers';
-// import {defaults} from 'gql/defaults';
-// import {typeDefs} from 'gql/type-defs';
+import {resolvers} from 'gql/resolver';
+import {defaults} from 'gql/default';
 
 // Import styles ===============================================================
 import './global.scss';
 
-const cache = new InMemoryCache();
-
-export const client = new ApolloClient({
+const client = new ApolloClient({
   uri: GQL,
-  cache,
-  link: ApolloLink.from([
-    // withClientState({defaults: defaultState, cache, typeDefs}),
-    new HttpLink(),
-  ]),
+  clientState: {
+    defaults,
+    resolvers,
+  },
 });
 
-const options = {
-  timeout: 5000,
-  position: 'bottom right',
-};
+// const stateLink = withClientState({
+//   defaults,
+//   resolvers,
+//   typeDefs,
+// });
+//
+// export const client = new ApolloClient({
+//   uri: GQL,
+//   cache,
+//   link: ApolloLink.from([stateLink, new HttpLink()]),
+// });
+
 
 render(
   <ApolloProvider client={client}>

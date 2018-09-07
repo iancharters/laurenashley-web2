@@ -20,9 +20,11 @@ import Alert from 'react-s-alert';
 import UserHome from 'component/view/UserHome';
 import Client from 'component/view/Client';
 import Clients from 'component/view/Clients';
+import Event from 'component/view/Event';
 import Events from 'component/view/Events';
 import Settings from 'component/view/Settings';
 import Stats from 'component/view/Stats';
+import Test from 'component/view/Test';
 
 class Root extends Component {
   componentDidMount() {
@@ -95,8 +97,22 @@ class Root extends Component {
 
             <MatchAuthenticated
               exact
-              path='/Events'
+              path='/event/:id'
+              component={Event}
+              {...authProps}
+            />
+
+            <MatchAuthenticated
+              exact
+              path='/events'
               component={Events}
+              {...authProps}
+            />
+
+            <MatchAuthenticated
+              exact
+              path='/test'
+              component={Test}
               {...authProps}
             />
 
