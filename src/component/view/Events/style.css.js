@@ -1,0 +1,3 @@
+export TEST = {
+  backgroundColor: 'red';
+}
